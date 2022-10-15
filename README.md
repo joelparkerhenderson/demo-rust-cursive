@@ -31,3 +31,16 @@ fn main() {
     c.run();
 }
 ```
+
+
+## Add global callback
+
+Add global callback, so the user can press the escape key to quit.
+
+```rust
+fn main() {
+    let mut c = cursive::default();
+    c.add_global_callback(cursive::event::Key::Esc, |s| s.quit());
+    c.run();
+}
+```
