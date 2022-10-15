@@ -19,3 +19,15 @@ cursive = "*"
 ```
 
 You need ncurses installed.
+
+
+## Run
+
+Create the cursive root and run it; press ctrl-c to quit.
+
+```rust
+fn main() {
+    let mut c = cursive::default(); // Create the cursive root
+    c.run();
+}
+```
