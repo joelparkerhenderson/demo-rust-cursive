@@ -2,17 +2,20 @@ fn main() {
     demo_button();
 }
 
+/// Create the cursive root and run it; press ctrl-c to quit.
 pub fn demo_run() {
     let mut c = cursive::default();
     c.run();
 }
 
+/// Add global callback, so the user can press the escape key to quit.
 pub fn demo_add_global_callback() {
     let mut c = cursive::default();
     c.add_global_callback(cursive::event::Key::Esc, |c| c.quit());
     c.run();
 }
 
+/// Show a button that the user can click to quit.
 pub fn demo_button() {
     let mut c = cursive::default();
     let button = cursive::views::Button::new("Quit", |c| c.quit());
@@ -20,6 +23,7 @@ pub fn demo_button() {
     c.run();
 }
 
+/// Show a TextView that shows the text "Hello World".
 pub fn demo_text_view() {
     let mut c = cursive::default();
     let view = cursive::views::TextView::new("Hello World");
@@ -27,6 +31,7 @@ pub fn demo_text_view() {
     c.run();
 }
 
+/// Show a Dialog info box with a message and a default "Ok" button.
 pub fn demo_dialog() {
     let mut c = cursive::default();
     let view = cursive::views::Dialog::info("Hello World");
@@ -34,6 +39,7 @@ pub fn demo_dialog() {
     c.run();
 }
 
+/// Show a SelectView with items to pick, then quit.
 pub fn demo_select_view() {
     let mut c = cursive::default();
     let mut view = cursive::views::SelectView::new();
@@ -48,12 +54,14 @@ pub fn demo_select_view() {
     c.run();
 }
 
+/// Set window title, which works on some systems, yet not on others.
 pub fn demo_set_window_title() {
     let mut c = cursive::default();
     c.set_window_title("Demo Title");
     c.run();
 }
 
+/// Show a menu bar at the top of the screen; press the escape key to use the menu.
 pub fn demo_menubar() {
     let mut c = cursive::default();
     c.menubar()
@@ -63,6 +71,7 @@ pub fn demo_menubar() {
     c.run();
 }
 
+/// Use a linear layout manager to arrange items vertically.
 pub fn demo_linear_layout_vertical() {
     let mut c = cursive::default();
     let linear_layout = cursive::views::LinearLayout::vertical()
@@ -73,6 +82,7 @@ pub fn demo_linear_layout_vertical() {
     c.run();
 }
 
+/// Use a linear layout manager to arrange items horizontally.
 pub fn demo_linear_layout_horizontal() {
     let mut c = cursive::default();
     let linear_layout = cursive::views::LinearLayout::horizontal()
@@ -82,4 +92,3 @@ pub fn demo_linear_layout_horizontal() {
     c.add_layer(linear_layout);
     c.run();
 }
-

@@ -26,10 +26,8 @@ You need ncurses installed.
 Create the cursive root and run it; press ctrl-c to quit.
 
 ```rust
-fn main() {
-    let mut c = cursive::default(); // Create the cursive root
-    c.run();
-}
+let mut c = cursive::default();
+c.run();
 ```
 
 
@@ -38,51 +36,45 @@ fn main() {
 Add global callback, so the user can press the escape key to quit.
 
 ```rust
-fn main() {
-    let mut c = cursive::default();
-    c.add_global_callback(cursive::event::Key::Esc, |c| c.quit());
-    c.run();
-}
+let mut c = cursive::default();
+c.add_global_callback(cursive::event::Key::Esc, |c| c.quit());
+c.run();
 ```
 
 
 ## Button
 
+Show a button that the user can click to quit.
+
 ```rust
-fn main() {
-    let mut c = cursive::default();
-    let button = cursive::views::Button::new("Quit", |c| c.quit());
-    c.add_layer(button);
-    c.run();
-}
+let mut c = cursive::default();
+let button = cursive::views::Button::new("Quit", |c| c.quit());
+c.add_layer(button);
+c.run();
 ```
 
 
 ## TextView
 
-Show a TextView.
+Show a TextView that shows the text "Hello World".
 
 ```rust
-fn main() {
-    let mut c = cursive::default();
-    let view = cursive::views::TextView::new("Hello World");
-    c.add_layer(view);
-    c.run();
-}
+let mut c = cursive::default();
+let view = cursive::views::TextView::new("Hello World");
+c.add_layer(view);
+c.run();
 ```
 
 
 ## Dialog
 
-Show a Dialog infobox with a message and a default "Ok" button.
+Show a Dialog info box with a message and a default "Ok" button.
 
 ```rust
-fn main() {
-    let mut c = cursive::default();
-    let view = cursive::views::Dialog::info("Hello World");
-    c.add_layer(view);
-    c.run();
-}
+let mut c = cursive::default();
+let view = cursive::views::Dialog::info("Hello World");
+c.add_layer(view);
+c.run();
 ```
 
 
@@ -91,19 +83,17 @@ fn main() {
 Show a SelectView with items to pick, then quit.
 
 ```rust
-fn main() {
-    let mut c = cursive::default();
-    let mut view = cursive::views::SelectView::new();
-    view.add_item("Demo 1", 1);
-    view.add_item("Demo 2", 2);
-    view.add_item("Demo 3", 3);
-    view.set_on_submit(|c, value| {
-        let dialog = cursive::views::Dialog::info(value.to_string());
-        c.add_layer(dialog);
-    });
-    c.add_layer(view);
-    c.run();
-}
+let mut c = cursive::default();
+let mut view = cursive::views::SelectView::new();
+view.add_item("Demo 1", 1);
+view.add_item("Demo 2", 2);
+view.add_item("Demo 3", 3);
+view.set_on_submit(|c, value| {
+    let dialog = cursive::views::Dialog::info(value.to_string());
+    c.add_layer(dialog);
+});
+c.add_layer(view);
+c.run();
 ```
 
 
@@ -112,11 +102,9 @@ fn main() {
 Set window title, which works on some systems, yet not on others.
 
 ```rust
-fn main() {
-    let mut c = cursive::default();
-    siv.set_window_title("Demo Title");
-    c.run();
-}
+let mut c = cursive::default();
+siv.set_window_title("Demo Title");
+c.run();
 ```
 
 
@@ -125,14 +113,12 @@ fn main() {
 Show a menu bar at the top of the screen; press the escape key to use the menu.
 
 ```rust
-fn main() {
-    let mut c = cursive::default();
-    c.menubar()
-    .add_leaf("Quit", |c| c.quit());
-    c.set_autohide_menu(false);
-    c.add_global_callback(cursive::event::Key::Esc, |c| c.select_menubar());
-    c.run();
-}
+let mut c = cursive::default();
+c.menubar()
+.add_leaf("Quit", |c| c.quit());
+c.set_autohide_menu(false);
+c.add_global_callback(cursive::event::Key::Esc, |c| c.select_menubar());
+c.run();
 ```
 
 
@@ -141,29 +127,26 @@ fn main() {
 Use a linear layout manager to arrange items vertically.
 
 ```rust
-fn main() {
-    let mut c = cursive::default();
-    let linear_layout = cursive::views::LinearLayout::vertical()
-    .child(cursive::views::TextView::new("Demo 1"))
-    .child(cursive::views::TextView::new("Demo 2"))
-    .child(cursive::views::TextView::new("Demo 3"));
-    c.add_layer(linear_layout);
-    c.run();
-}
+let mut c = cursive::default();
+let linear_layout = cursive::views::LinearLayout::vertical()
+.child(cursive::views::TextView::new("Demo 1"))
+.child(cursive::views::TextView::new("Demo 2"))
+.child(cursive::views::TextView::new("Demo 3"));
+c.add_layer(linear_layout);
+c.run();
 ```
+
 
 ## LinearLayout horizontal
 
 Use a linear layout manager to arrange items horizontally.
 
 ```rust
-fn main() {
-    let mut c = cursive::default();
-    let linear_layout = cursive::views::LinearLayout::horizontal()
-    .child(cursive::views::TextView::new("Demo 1"))
-    .child(cursive::views::TextView::new("Demo 2"))
-    .child(cursive::views::TextView::new("Demo 3"));
-    c.add_layer(linear_layout);
-    c.run();
-}
+let mut c = cursive::default();
+let linear_layout = cursive::views::LinearLayout::horizontal()
+.child(cursive::views::TextView::new("Demo 1"))
+.child(cursive::views::TextView::new("Demo 2"))
+.child(cursive::views::TextView::new("Demo 3"));
+c.add_layer(linear_layout);
+c.run();
 ```
