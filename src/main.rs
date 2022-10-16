@@ -40,3 +40,9 @@ pub fn demo_select_view() {
     c.add_layer(view);
     c.run();
 }
+
+pub fn demo_set_window_title() {
+    let mut c = cursive::default();
+    siv.set_window_title("Demo Title");
+    c.run();
+}

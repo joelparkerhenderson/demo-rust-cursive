@@ -93,3 +93,16 @@ fn main() {
     c.run();
 }
 ```
+
+
+## Set window title
+
+Set window title, which works on some systems, yet not on others.
+
+```rust
+fn main() {
+    let mut c = cursive::default();
+    siv.set_window_title("Demo Title");
+    c.run();
+}
+```
