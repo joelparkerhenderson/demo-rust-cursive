@@ -171,7 +171,6 @@ c.add_layer(checkbox);
 Show an EditView with a Resizable.
 
 ```rust
-
 let mut c = cursive::default();
 let edit_view = cursive::views::EditView::new()
 .max_content_width(20)
@@ -183,4 +182,3 @@ use cursive::view::Resizable;
 c.add_layer(edit_view.fixed_width(20));
 c.run();
 ```
-
