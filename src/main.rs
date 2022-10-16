@@ -1,5 +1,5 @@
 fn main() {
-    demo_run();
+    demo_linear_layout_vertical();
 }
 
 pub fn demo_run() {
@@ -55,3 +55,14 @@ pub fn demo_menubar() {
     c.add_global_callback(cursive::event::Key::Esc, |s| s.select_menubar());
     c.run();
 }
+
+pub fn demo_linear_layout_vertical() {
+    let mut c = cursive::default();
+    let linear_layout = cursive::views::LinearLayout::vertical()
+    .child(cursive::views::TextView::new("Demo 1"))
+    .child(cursive::views::TextView::new("Demo 2"))
+    .child(cursive::views::TextView::new("Demo 3"));
+    c.add_layer(linear_layout);
+    c.run();
+}
+

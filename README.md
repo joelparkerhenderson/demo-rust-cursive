@@ -115,10 +115,28 @@ Show a menu bar at the top of the screen; press the escape key to use the menu.
 ```rust
 fn main() {
     let mut c = cursive::default();
-    c.set_autohide_menu(false);
-    c.add_global_callback(cursive::event::Key::Esc, |s| s.select_menubar());
     c.menubar()
     .add_leaf("Quit", |s| s.quit());
+    c.set_autohide_menu(false);
+    c.add_global_callback(cursive::event::Key::Esc, |s| s.select_menubar());
+    c.run();
+}
+```
+
+
+## LinearLayout vertical
+
+Use a linear layout manager to arrange items vertically.
+
+```rust
+fn main() {
+    let mut c = cursive::default();
+    let linear_layout = cursive::views::LinearLayout::vertical()
+    .child(cursive::views::TextView::new("Demo 1"))
+    .child(cursive::views::TextView::new("Demo 2"))
+    .child(cursive::views::TextView::new("Demo 3"));
+    c.add_layer(linear_layout);
+    c.run();
     c.run();
 }
 ```
