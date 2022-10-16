@@ -1,5 +1,5 @@
 fn main() {
-    demo_edit_view();
+    demo_checkbox();
 }
 
 /// Create the cursive root and run it; press ctrl-c to quit.
@@ -104,5 +104,16 @@ pub fn demo_edit_view() {
     });
     use cursive::view::Resizable;
     c.add_layer(edit_view.fixed_width(20));
+    c.run();
+}
+
+/// Show a Checkbox
+pub fn demo_checkbox() {
+    let mut c = cursive::default();
+    let checkbox = cursive::views::Checkbox::new().on_change(|c, value| {
+        let dialog = cursive::views::Dialog::info(value.to_string());
+        c.add_layer(dialog);
+    });
+    c.add_layer(checkbox);
     c.run();
 }
