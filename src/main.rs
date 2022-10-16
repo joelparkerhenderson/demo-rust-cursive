@@ -43,6 +43,15 @@ pub fn demo_select_view() {
 
 pub fn demo_set_window_title() {
     let mut c = cursive::default();
-    siv.set_window_title("Demo Title");
+    c.set_window_title("Demo Title");
+    c.run();
+}
+
+pub fn demo_menubar() {
+    let mut c = cursive::default();
+    c.menubar()
+    .add_leaf("Quit", |s| s.quit());
+    c.set_autohide_menu(false);
+    c.add_global_callback(cursive::event::Key::Esc, |s| s.select_menubar());
     c.run();
 }

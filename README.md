@@ -106,3 +106,19 @@ fn main() {
     c.run();
 }
 ```
+
+
+## Menubar
+
+Show a menu bar at the top of the screen; press the escape key to use the menu.
+
+```rust
+fn main() {
+    let mut c = cursive::default();
+    c.set_autohide_menu(false);
+    c.add_global_callback(cursive::event::Key::Esc, |s| s.select_menubar());
+    c.menubar()
+    .add_leaf("Quit", |s| s.quit());
+    c.run();
+}
+```
