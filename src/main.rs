@@ -1,5 +1,5 @@
 fn main() {
-    demo_linear_layout_vertical();
+    demo_linear_layout_horizontal();
 }
 
 pub fn demo_run() {
@@ -59,6 +59,16 @@ pub fn demo_menubar() {
 pub fn demo_linear_layout_vertical() {
     let mut c = cursive::default();
     let linear_layout = cursive::views::LinearLayout::vertical()
+    .child(cursive::views::TextView::new("Demo 1"))
+    .child(cursive::views::TextView::new("Demo 2"))
+    .child(cursive::views::TextView::new("Demo 3"));
+    c.add_layer(linear_layout);
+    c.run();
+}
+
+pub fn demo_linear_layout_horizontal() {
+    let mut c = cursive::default();
+    let linear_layout = cursive::views::LinearLayout::horizontal()
     .child(cursive::views::TextView::new("Demo 1"))
     .child(cursive::views::TextView::new("Demo 2"))
     .child(cursive::views::TextView::new("Demo 3"));
