@@ -40,7 +40,19 @@ Add global callback, so the user can press the escape key to quit.
 ```rust
 fn main() {
     let mut c = cursive::default();
-    c.add_global_callback(cursive::event::Key::Esc, |s| s.quit());
+    c.add_global_callback(cursive::event::Key::Esc, |c| c.quit());
+    c.run();
+}
+```
+
+
+## Button
+
+```rust
+fn main() {
+    let mut c = cursive::default();
+    let button = cursive::views::Button::new("Quit", |c| c.quit());
+    c.add_layer(button);
     c.run();
 }
 ```
@@ -85,9 +97,9 @@ fn main() {
     view.add_item("Demo 1", 1);
     view.add_item("Demo 2", 2);
     view.add_item("Demo 3", 3);
-    view.set_on_submit(|s, value| {
+    view.set_on_submit(|c, value| {
         let dialog = cursive::views::Dialog::info(value.to_string());
-        s.add_layer(dialog);
+        c.add_layer(dialog);
     });
     c.add_layer(view);
     c.run();
@@ -116,9 +128,9 @@ Show a menu bar at the top of the screen; press the escape key to use the menu.
 fn main() {
     let mut c = cursive::default();
     c.menubar()
-    .add_leaf("Quit", |s| s.quit());
+    .add_leaf("Quit", |c| c.quit());
     c.set_autohide_menu(false);
-    c.add_global_callback(cursive::event::Key::Esc, |s| s.select_menubar());
+    c.add_global_callback(cursive::event::Key::Esc, |c| c.select_menubar());
     c.run();
 }
 ```
