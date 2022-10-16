@@ -19,3 +19,10 @@ pub fn demo_text_view() {
     c.add_layer(view);
     c.run();
 }
+
+pub fn demo_dialog() {
+    let mut c = cursive::default();
+    let view = cursive::views::Dialog::info("Hello World");
+    c.add_layer(view);
+    c.run();
+}

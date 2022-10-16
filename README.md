@@ -58,3 +58,17 @@ fn main() {
     c.run();
 }
 ```
+
+
+## Dialog
+
+Show a Dialog infobox with a message and a default "Ok" button.
+
+```rust
+fn main() {
+    let mut c = cursive::default();
+    let view = cursive::views::Dialog::info("Hello World");
+    c.add_layer(view);
+    c.run();
+}
+```
