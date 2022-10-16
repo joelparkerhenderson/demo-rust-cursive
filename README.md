@@ -150,3 +150,23 @@ let linear_layout = cursive::views::LinearLayout::horizontal()
 c.add_layer(linear_layout);
 c.run();
 ```
+
+
+## EditView with Resizable
+
+Show an EditView with a Resizable.
+
+```rust
+
+let mut c = cursive::default();
+let edit_view = cursive::views::EditView::new()
+.max_content_width(20)
+.on_submit(|c, value| {
+    let dialog = cursive::views::Dialog::info(value.to_string());
+    c.add_layer(dialog);
+});
+use cursive::view::Resizable;
+c.add_layer(edit_view.fixed_width(20));
+c.run();
+```
+
