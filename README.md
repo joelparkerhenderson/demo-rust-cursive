@@ -234,7 +234,7 @@ c.run();
 ```
 
 
-## Theme with green on black
+## Theme palette with green on black
 
 Theme settings with green foreground colors on black background colors.
 
@@ -260,5 +260,21 @@ let theme = cursive::theme::Theme{
 };
 c.set_theme(theme);
 c.add_layer(cursive::views::TextView::new("Hello World"));
+c.run();
+```
+
+
+## Theme palette with terminal default
+
+Theme palette customized with terminal default colors.
+
+```rust
+let mut c = cursive::default();
+let mut theme = c.current_theme().clone();
+theme.shadow = false;
+theme.borders = cursive::theme::BorderStyle::None;
+theme.palette[cursive::theme::PaletteColor::Background] = cursive::theme::Color::TerminalDefault;
+theme.palette[cursive::theme::PaletteColor::View] = cursive::theme::Color::TerminalDefault;
+c.set_theme(theme);
 c.run();
 ```
