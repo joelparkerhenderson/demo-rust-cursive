@@ -290,3 +290,13 @@ let view = cursive::views::TextView::new("Hello World");
 c.add_fullscreen_layer(view.full_screen());
 c.run();
 ```
+
+
+## Tips
+
+Convert `TextView` content to a `&str`:
+
+```rust
+let text_view = cursive::views::TextView::new("Hello World");
+let s: &str = text_view.get_content().source();
+```
