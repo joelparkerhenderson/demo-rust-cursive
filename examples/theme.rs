@@ -20,6 +20,6 @@ fn main() {
         palette: palette,
     };
     c.set_theme(theme);
-    println!("{:?}", c.current_theme());
+    c.add_layer(cursive::views::TextView::new("Hello World"));
     c.run();
 }
