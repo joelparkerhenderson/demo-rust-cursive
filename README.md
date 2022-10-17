@@ -278,3 +278,15 @@ theme.palette[cursive::theme::PaletteColor::View] = cursive::theme::Color::Termi
 c.set_theme(theme);
 c.run();
 ```
+
+
+## Add fullscreen layer
+
+Add a fullscreen layer i.e. a view with zero margin and zero padding.
+
+```rust
+let mut c = cursive::default();
+let view = cursive::views::TextView::new("Hello World");
+c.add_fullscreen_layer(view.full_screen());
+c.run();
+```
