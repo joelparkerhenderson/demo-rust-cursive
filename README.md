@@ -320,3 +320,19 @@ Convert `TextView` content to a `&str`:
 let text_view = cursive::views::TextView::new("Hello World");
 let s: &str = text_view.get_content().source();
 ```
+
+## Backends
+
+Cursive can use various backends. In priority order:
+
+* blt-backend
+
+* termion-backend
+  
+* crossterm-backend
+
+* pancurses-backend
+
+* ncurses-backend
+
+* run_dummy
