@@ -6,7 +6,7 @@ fn main() {
     // Create a content string that Cursive can change later on.
     let mut content = cursive::views::TextContent::new("");
 
-    // Show the content string the typical way.
+    // Show the content string by wrapping it in a text view.
     c.add_layer(cursive::views::TextView::new_with_content(content.clone()));
 
     // Get the current runner backend, such as ncurses, pancurses, etc.
