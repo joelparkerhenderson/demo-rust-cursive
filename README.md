@@ -102,7 +102,10 @@ You need a Cursive backend installed, such as ncurses, pancurses, etc.
    Show a menu bar with a few subtree menus and a few leaf items.
 
 * [Status & OnLayoutView](examples/status_and_on_layout_view.rs):
-  Show a status line at the bottom of the screen.
+  Show a status bar line at the bottom of the screen.
+
+* [StatusExt trait](examples/status_ext_trait.rs):
+  Show a status bar line by creating a custom trait extension.
 
 
 ## Tips
