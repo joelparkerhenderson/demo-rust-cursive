@@ -1,4 +1,4 @@
-//! Show a menu bar with a few subtree menus and leaf items.
+//! Show a menu bar with a few subtree menus and a few leaf items.
 pub fn main() {
     let mut c = cursive::default();
     c.menubar()
@@ -10,12 +10,12 @@ pub fn main() {
     .add_subtree(
         "Edit",
         cursive::menu::Tree::new()
-        .leaf("Find", |c| c.add_layer(cursive::views::Dialog::info("Demo")))
+        .leaf("Find", |c| c.add_layer(cursive::views::Dialog::info("Find")))
     )
     .add_subtree(
         "Help",
         cursive::menu::Tree::new()
-        .leaf("About", |c| c.add_layer(cursive::views::Dialog::info("Demo")))
+        .leaf("About", |c| c.add_layer(cursive::views::Dialog::info("About")))
     );
     c.set_autohide_menu(false);
     c.add_global_callback(cursive::event::Key::Esc, |c| c.select_menubar());
