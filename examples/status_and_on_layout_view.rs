@@ -6,6 +6,9 @@ use cursive::view::View; // For the `layout` function
 fn main() {
     let mut c = cursive::default();
 
+    // Create status as text content because we want to update it later.
+    let status_content = cursive::views::TextContent::new("Status");
+
     // Get a mutable reference to the currently active screen.
     c.screen_mut()
 
@@ -25,7 +28,7 @@ fn main() {
                 cursive::views::Layer::new(
 
                     // Use a typical TextView that wraps the status string.
-                    cursive::views::TextView::new("Hello World").with_name("status"),
+                    cursive::views::TextView::new_with_content(status_content.clone()).with_name("status"),
             
                 )
                 .full_width(),
