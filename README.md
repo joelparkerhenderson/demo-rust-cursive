@@ -9,7 +9,6 @@ Create:
 
 ```sh
 cargo new demo
-}
 ```
 
 Add crate:
@@ -17,10 +16,9 @@ Add crate:
 ```toml
 [dependencies]
 cursive = "*"
-}
 ```
 
-You need ncurses installed.
+You need a Cursive backend installed, such as ncurses, pancurses, etc.
 
 
 ## Examples
@@ -80,13 +78,13 @@ You need ncurses installed.
 ## Themes
 
 * [Theme & Palette & BorderStyle](examples/theme_and_palette_and_border_style.rs):
-  Theme settings with shadow, BorderStyle borders, and Palette colors.
+  Theme settings Palette colors, BorderStyle borders, and shadow flag.
 
 * [Theme & Palette with Green on Black](examples/theme_and_palette_with_green_on_black.rs):
   Theme settings with green foreground colors on black background colors.
 
 * [Theme & Palette with TerminalDefault](examples/theme_and_palette_with_terminal_default.rs): 
-  Theme palette customized with terminal default colors.
+  Theme settings customized with terminal default colors.
 
 * [Add fullscreen layer](examples/add_fullscreen_layer.rs):
   Add a fullscreen layer i.e. a view with zero margin and zero padding.
