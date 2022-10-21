@@ -9,6 +9,7 @@ Create:
 
 ```sh
 cargo new demo
+}
 ```
 
 Add crate:
@@ -16,338 +17,88 @@ Add crate:
 ```toml
 [dependencies]
 cursive = "*"
+}
 ```
 
 You need ncurses installed.
 
 
-## Run
+## Examples
 
-Create the cursive root and run it; press ctrl-c to quit.
+* [Run](examples/run.rs): 
+  Create the cursive root and run it; press ctrl-c to quit.
 
-```rust
-let mut c = cursive::default();
-c.run();
-```
+* [add_global_callback](examples/add_global_callback.rs): 
+  Add a global callback so the user can press the escape key to quit.
 
 
-## Add global callback
+## Views
 
-Add global callback, so the user can press the escape key to quit.
+* [TextView](examples/text_view.rs): 
+  Show a TextView that shows the text "Hello World".
 
-```rust
-let mut c = cursive::default();
-c.add_global_callback(cursive::event::Key::Esc, |c| c.quit());
-c.run();
-```
+* [Dialog](examples/dialog.rs): 
+  Show a Dialog info box with a message and a default "Ok" button.
 
+* [SelectView](examples/select_view.rs):
+  Show a SelectView with items to pick, then quit.
 
-## Button
 
-Show a button that the user can click to quit.
+### Layouts
 
-```rust
-let mut c = cursive::default();
-let button = cursive::views::Button::new("Quit", |c| c.quit());
-c.add_layer(button);
-c.run();
-```
+* [LinearLayout::vertical](examples/linear_layout_vertical.rs):
+  Use a linear layout manager to arrange items vertically.
 
+* [LinearLayout::horizontal](examples/linear_layout_horizontal.rs):
+  Use a linear layout manager to arrange items horizontally.
 
-## TextView
 
-Show a TextView that shows the text "Hello World".
+### Clickables
 
-```rust
-let mut c = cursive::default();
-let view = cursive::views::TextView::new("Hello World");
-c.add_layer(view);
-c.run();
-```
+* [Button](examples/button.rs): 
+  Show a button that the user can click to quit.
 
+* [Checkbox](examples/checkbox.rs):
+  Show a Checkbox; press space or enter to toggle.
 
-## Dialog
+* [RadioGroup & RadioButton](examples/radio_group_radio_button.rs)::
+  Show a RadioGroup and RadioButton items using a LinearLayout.
 
-Show a Dialog info box with a message and a default "Ok" button.
 
-```rust
-let mut c = cursive::default();
-let view = cursive::views::Dialog::info("Hello World");
-c.add_layer(view);
-c.run();
-```
+### More
 
+* [EditView & Resizable](examples/edit_view_and_resizable.rs):
+  Show an EditView with a Resizable.
 
-## SelectView
+* [Set UserData](examples/set_user_data.rs):
+  Set user data via a custom struct with fields we want.
 
-Show a SelectView with items to pick, then quit.
+* [Event loop & runner & step](examples/event_loop_and_runner_and_step.rs):
+  Run a custom event loop with a runner and its step function.
 
-```rust
-let mut c = cursive::default();
-let mut view = cursive::views::SelectView::new();
-view.add_item("Demo 1", 1);
-view.add_item("Demo 2", 2);
-view.add_item("Demo 3", 3);
-view.set_on_submit(|c, value| {
-    let dialog = cursive::views::Dialog::info(value.to_string());
-    c.add_layer(dialog);
-});
-c.add_layer(view);
-c.run();
-```
 
+## Themes
 
-## Set window title
+* [Theme & Palette & BorderStyle](examples/theme_and_palette_and_border_style.rs):
+  Theme settings with shadow, BorderStyle borders, and Palette colors.
 
-Set window title, which works on some systems, yet not on others.
+* [Theme & Palette with Green on Black](examples/theme_and_palette_with_green_on_black.rs):
+  Theme settings with green foreground colors on black background colors.
 
-```rust
-let mut c = cursive::default();
-siv.set_window_title("Demo Title");
-c.run();
-```
+* [Theme & Palette with TerminalDefault](examples/theme_and_palette_with_terminal_default.rs): 
+  Theme palette customized with terminal default colors.
 
+* [Add fullscreen layer](examples/add_fullscreen_layer.rs):
+  Add a fullscreen layer i.e. a view with zero margin and zero padding.
 
-## Menubar
 
-Show a menu bar at the top of the screen; press the escape key to use the menu.
+### Edges
 
-```rust
-let mut c = cursive::default();
-c.menubar()
-.add_leaf("Quit", |c| c.quit());
-c.set_autohide_menu(false);
-c.add_global_callback(cursive::event::Key::Esc, |c| c.select_menubar());
-c.run();
-```
+* [set_window_title](examples/set_window_title.rs): 
+  Set window title, which works on some systems, yet not on others.
 
-
-## LinearLayout vertical
-
-Use a linear layout manager to arrange items vertically.
-
-```rust
-let mut c = cursive::default();
-let linear_layout = cursive::views::LinearLayout::vertical()
-.child(cursive::views::TextView::new("Demo 1"))
-.child(cursive::views::TextView::new("Demo 2"))
-.child(cursive::views::TextView::new("Demo 3"));
-c.add_layer(linear_layout);
-c.run();
-```
-
-
-## LinearLayout horizontal
-
-Use a linear layout manager to arrange items horizontally.
-
-```rust
-let mut c = cursive::default();
-let linear_layout = cursive::views::LinearLayout::horizontal()
-.child(cursive::views::TextView::new("Demo 1"))
-.child(cursive::views::TextView::new("Demo 2"))
-.child(cursive::views::TextView::new("Demo 3"));
-c.add_layer(linear_layout);
-c.run();
-```
-
-
-## Checkbox
-
-Show a Checkbox; press space or enter to toggle.
-
-```rust
-let mut c = cursive::default();
-let checkbox = cursive::views::Checkbox::new().on_change(|c, value| {
-    let dialog = cursive::views::Dialog::info(value.to_string());
-    c.add_layer(dialog);
-});
-c.add_layer(checkbox);
-```
-
-
-## EditView with Resizable
-
-Show an EditView with a Resizable.
-
-```rust
-let mut c = cursive::default();
-let edit_view = cursive::views::EditView::new()
-.max_content_width(20)
-.on_submit(|c, value| {
-    let dialog = cursive::views::Dialog::info(value.to_string());
-    c.add_layer(dialog);
-});
-use cursive::view::Resizable;
-c.add_layer(edit_view.fixed_width(20));
-c.run();
-```
-
-
-## RadioGroup & RadioButton
-
-Show a RadioGroup and RadioButton items using a LinearLayout.
-
-```rust
-let mut c = cursive::default();
-let mut radio_group: cursive::views::RadioGroup<String> = cursive::views::RadioGroup::new()
-.on_change(|c, value: &String| {
-    let dialog = cursive::views::Dialog::info(value);
-    c.add_layer(dialog);
-});
-let linear_layout = cursive::views::LinearLayout::vertical()
-.child(radio_group.button_str("Demo 1"))
-.child(radio_group.button_str("Demo 2"))
-.child(radio_group.button_str("Demo 3"));
-c.add_layer(linear_layout);
-c.run();
-```
-
-
-## Theme with BorderStyle and Palette
-
-Theme settings with shadow, BorderStyle borders, and Palette colors.
-
-```rust
-use cursive::theme::{BaseColor::*, Color::*, PaletteColor::*};
-let mut c = cursive::default();
-let mut palette = cursive::theme::Palette::default();
-palette[Background] =Dark(Blue);
-palette[Shadow] = Dark(Black); 
-palette[View] = Dark(White);
-palette[Primary] = Dark(Black);
-palette[Secondary] = Dark(Blue);
-palette[Tertiary] = Light(White);
-palette[TitlePrimary] = Dark(Red);
-palette[TitleSecondary] = Dark(Yellow);
-palette[Highlight] = Dark(Red);
-palette[HighlightInactive] = Dark(Blue);
-palette[HighlightText] = Dark(White);    
-let theme = cursive::theme::Theme{
-    shadow: true,
-    borders: cursive::theme::BorderStyle::Simple,
-    palette: palette,
-};
-c.set_theme(theme);
-c.add_layer(cursive::views::TextView::new("Hello World"));
-c.run();
-```
-
-
-## Theme palette with green on black
-
-Theme settings with green foreground colors on black background colors.
-
-```rust
-use cursive::theme::{BaseColor::*, Color::*, PaletteColor::*};
-let mut c = cursive::default();
-let mut palette = cursive::theme::Palette::default();
-palette[Background] =Dark(Black);
-palette[Shadow] = Dark(Black); 
-palette[View] = Dark(Black);
-palette[Primary] = Light(Green);
-palette[Secondary] = Light(Green);
-palette[Tertiary] = Light(Green);
-palette[TitlePrimary] = Light(Green);
-palette[TitleSecondary] = Light(Green);
-palette[Highlight] = Light(Green);
-palette[HighlightInactive] = Light(Green);
-palette[HighlightText] = Light(Green);    
-let theme = cursive::theme::Theme{
-    shadow: true,
-    borders: cursive::theme::BorderStyle::None,
-    palette: palette,
-};
-c.set_theme(theme);
-c.add_layer(cursive::views::TextView::new("Hello World"));
-c.run();
-```
-
-
-## Theme palette with terminal default
-
-Theme palette customized with terminal default colors.
-
-```rust
-let mut c = cursive::default();
-let mut theme = c.current_theme().clone();
-theme.shadow = false;
-theme.borders = cursive::theme::BorderStyle::None;
-theme.palette[cursive::theme::PaletteColor::Background] = cursive::theme::Color::TerminalDefault;
-theme.palette[cursive::theme::PaletteColor::View] = cursive::theme::Color::TerminalDefault;
-c.set_theme(theme);
-c.run();
-```
-
-
-## Add fullscreen layer
-
-Add a fullscreen layer i.e. a view with zero margin and zero padding.
-
-```rust
-use cursive::view::Resizable;
-let mut c = cursive::default();
-let view = cursive::views::TextView::new("Hello World");
-c.add_fullscreen_layer(view.full_screen());
-c.run();
-```
-
-
-## User data
-
-Set user data via a custom struct with fields we want.
-
-```rust
-struct UserData {
-    foo: usize,
-    goo: usize,
-}
-
-let mut c = cursive::default();
-let user_data = UserData {
-    foo: 1,
-    goo: 2,
-};
-c.set_user_data(user_data);
-c.run();
-```
-
-
-## Event loop with runner and step
-
-Run a custom event loop with a runner and its step function.
-
-```rust
-// Create a cursive root.
-let mut c = cursive::default();
-
-// Create a content string that Cursive can change later on.
-let mut content = cursive::views::TextContent::new("");
-
-// Show the content string by wrapping it in a text view.
-c.add_layer(cursive::views::TextView::new_with_content(content.clone()));
-
-// Get the current runner backend, such as ncurses, pancurses, etc.
-let mut runner = c.runner();
-
-// Loop forever until the user quits e.g. press CTRL-C.
-while runner.is_running() {
-
-    // Get the current time as seconds.
-    let secs = std::time::SystemTime::now()
-        .duration_since(std::time::UNIX_EPOCH)
-        .expect("now").as_secs();
-
-    // Update the content with the current time.
-    content.set_content(format!("{:?}", secs));
-
-    // Refresh the screen with the current view tree state.
-    runner.refresh();
-
-    // Call the next Cursive runner step.
-    runner.step();
-}
-```
+* [menubar](examples/menubar.rs):
+  Show a menu bar at the top of the screen; press the escape key to use the menu.
 
 
 ## Tips
@@ -355,8 +106,10 @@ while runner.is_running() {
 Convert `TextView` content to a `&str`:
 
 ```rust
-let text_view = cursive::views::TextView::new("Hello World");
-let s: &str = text_view.get_content().source();
+main() {
+    let text_view = cursive::views::TextView::new("Hello World");
+    let s: &str = text_view.get_content().source();
+}
 ```
 
 ## Backends
