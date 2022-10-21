@@ -100,6 +100,9 @@ You need ncurses installed.
 * [menubar](examples/menubar.rs):
   Show a menu bar at the top of the screen; press the escape key to use the menu.
 
+* [Status & OnLayoutView](examples/status_and_on_layout_view.rs):
+  Show a status line at the bottom of the screen.
+
 
 ## Tips
 
