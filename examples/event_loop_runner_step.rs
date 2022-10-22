@@ -4,7 +4,7 @@ fn main() {
     let mut c = cursive::default();
 
     // Create a content string that Cursive can change later on.
-    let mut content = cursive::views::TextContent::new("");
+    let content = cursive::views::TextContent::new("");
 
     // Show the content string by wrapping it in a text view.
     c.add_layer(cursive::views::TextView::new_with_content(content.clone()));

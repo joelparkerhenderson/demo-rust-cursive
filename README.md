@@ -71,7 +71,7 @@ You need a Cursive backend installed, such as ncurses, pancurses, etc.
 * [Set UserData](examples/set_user_data.rs):
   Set user data via a custom struct with fields we want.
 
-* [Event loop & runner & step](examples/event_loop_and_runner_and_step.rs):
+* [Event loop & runner & step](examples/event_loop_runner_step.rs):
   Run a custom event loop with a runner and its step function.
 
 
@@ -104,7 +104,7 @@ You need a Cursive backend installed, such as ncurses, pancurses, etc.
 * [Status & OnLayoutView](examples/status_and_on_layout_view.rs):
   Show a status bar line at the bottom of the screen.
 
-* [StatusExt trait](examples/status_ext_trait.rs):
+* [StatusBarExt trait](examples/status_bar_ext.rs):
   Show a status bar line by creating a custom trait extension.
 
 
