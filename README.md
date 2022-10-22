@@ -35,6 +35,9 @@ You need a Cursive backend installed, such as ncurses, pancurses, etc.
 * [TextView](examples/text_view.rs): 
   Show a TextView that shows the text "Hello World".
 
+* [TextView get_shared_content](examples/text_view_get_shared_content.rs)
+  Get a text view shared content reference, to do content mutation.
+
 * [Dialog](examples/dialog.rs): 
   Show a Dialog info box with a message and a default "Ok" button.
 
