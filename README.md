@@ -44,6 +44,8 @@ You need a Cursive backend installed, such as ncurses, pancurses, etc.
 * [SelectView](examples/select_view.rs):
   Show a SelectView with items to pick, then quit.
 
+* [ViewWrapper](examples/view_wrapper.rs):
+  Implement the ViewWrapper trait to wrap a view and intercept events.
 
 ### Layouts
 
