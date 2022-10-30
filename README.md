@@ -47,6 +47,7 @@ You need a Cursive backend installed, such as ncurses, pancurses, etc.
 * [ViewWrapper](examples/view_wrapper.rs):
   Implement the ViewWrapper trait to wrap a view and intercept events.
 
+
 ### Layouts
 
 * [LinearLayout::vertical](examples/linear_layout_vertical.rs):
@@ -126,16 +127,49 @@ main() {
 
 ## Backends
 
-Cursive can use various backends. In priority order:
+Cursive can use various backends. We prefer to use the Termion backend. Discussion below.
+
+Cursive will choose the backend to use, with this priority order:
 
 * blt-backend
 
-* termion-backend
+* [termion-backend](examples/termion_backend.rs): pure-Rust Unix-specific backend
   
-* crossterm-backend
+* [crossterm-backend](examples/crossterm_backend.rs): pure-Rust cross-platform backend
 
 * pancurses-backend
 
-* ncurses-backend
+* ncurses-backend: default on Unix
 
 * run_dummy
+
+
+### ncurses considerations
+
+Discussion from [source](https://github.com/gyscos/cursive/issues/411):
+
+* The `ncurses` crate is wildly unsound. It simply wraps calls to C functions in Rust functions and declares them safe, with no validation whatsoever. It has format string vulnerabilities, returns invalid UTF-8 in &str, and so much other unsoundness that you can cause pretty much arbitrary memory corruption. It is also unmaintained. See Tracker: All unsafe blocks must be removed and then re-added one by one after careful verification of actual safety. 
+
+* The `pancurses` crate depends on ncurses and inherits the issues.
+
+* One of the reasons `ncurses` still the default backend is the input it supports: things like Ctrl+F1, Ctrl+Insert are currently working on the ncurses backend. Last time I quickly surveyed the other backends, none of them were returning enough information to implement that (even if it's raw input code from the terminal to be parsed in cursive itself). It's not critical to support these modifiers, but I was a bit sad having to cut features.
+
+
+### Crossterm discussion
+
+Does Crossterm work on Apple macOS with M1/M2/ARM/AARCH?
+
+* Crossterm seems cause unresponsive terminals on my system, which is macOS Ventura 13.0 on a MacBook Pro with Apple M1 Max.
+
+* I reported the issue to the GitHub repositories for Cursive and for Crossterm.
+
+
+### BearLibTerminal discussion
+
+Is BearLibTerminal maintained or not? 
+
+* The BearLibTerminal GitHub repository shows the last update 3 years ago.
+
+* The BearLibTerminal GitHub installation instructions say to use `pip install bearlibterminal`. But on my system, the instructions don't work. The errors are: "ERROR: Could not find a version that satisfies the requirement bearlibterminal (from versions: none)" and "ERROR: No matching distribution found for bearlibterminal". 
+  
+* The BearLibTerminal example in this repo is `examples/blt_terminal.rs`. But on my system, the example doesn't work. The errors include: "note: ld: library not found for -lBearLibTerminal" and "clang: error: linker command failed with exit code 1 (use -v to see invocation)".
