@@ -155,13 +155,22 @@ Discussion from [source](https://github.com/gyscos/cursive/issues/411):
 * One of the reasons `ncurses` still the default backend is the input it supports: things like Ctrl+F1, Ctrl+Insert are currently working on the ncurses backend. Last time I quickly surveyed the other backends, none of them were returning enough information to implement that (even if it's raw input code from the terminal to be parsed in cursive itself). It's not critical to support these modifiers, but I was a bit sad having to cut features.
 
 
+### Termion discussion
+
+We don't use Termion because it doesn't fully work yet on Apple macOS with M1/M2.
+
+Termion crashes when there's a Unix pipe, at least on my system, which is macOS Ventura 13.0 on a MacBook Pro with Apple M1 Max.
+
+We intend to use Termion if/when the bug is fixed.
+
+
 ### Crossterm discussion
 
-Does Crossterm work on Apple macOS with M1/M2/ARM/AARCH?
+We don't use Crossterm because it doesn't fully work yet on Apple macOS with M1/M2.
 
-* Crossterm seems cause unresponsive terminals on my system, which is macOS Ventura 13.0 on a MacBook Pro with Apple M1 Max.
+Crossterm crashes and causes unresponsive terminals on my system, which is macOS Ventura 13.0 on a MacBook Pro with Apple M1 Max. This is a known bug since 2020. 
 
-* I reported the issue to the GitHub repositories for Cursive and for Crossterm.
+We intend to use Crossterm if/when the bug is fixed.
 
 
 ### BearLibTerminal discussion
